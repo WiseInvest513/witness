@@ -1,0 +1,24 @@
+{
+  "name": "wiseinvest-witness",
+  "version": "1.0.0",
+  "description": "见证开户咨询服务 - 足不出户，开通全球银行账户",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python3 -m http.server 3000"
+  },
+  "keywords": [
+    "见证开户",
+    "银行",
+    "国际账户",
+    "金融服务"
+  ],
+  "author": "WiseInvest",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_USERNAME/wiseinvest-witness.git"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

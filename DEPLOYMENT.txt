@@ -1,0 +1,80 @@
+📌 VERCEL 部署快速清单
+================================
+
+【项目基本信息】
+- 项目名称: wiseinvest-witness
+- GitHub 仓库: https://github.com/YOUR_USERNAME/wiseinvest-witness
+- Vercel 地址: https://wiseinvest-witness.vercel.app (部署后获得)
+
+【GitHub 仓库创建】
+1. 访问 github.com
+2. 创建新仓库: wiseinvest-witness
+3. Description: "见证开户咨询服务"
+4. Public (公开)
+5. 创建
+
+【本地 Git 初始化】
+$ cd /Users/balala/Persona/Blog/witness
+$ git init
+$ git add .
+$ git commit -m "Initial commit"
+$ git remote add origin https://github.com/YOUR_USERNAME/wiseinvest-witness.git
+$ git branch -M main
+$ git push -u origin main
+
+【Vercel 部署】
+1. 访问 vercel.com 登录
+2. 点击 "New Project"
+3. 导入 GitHub 仓库
+4. 框架: Other (Static)
+5. 根目录: ./
+6. 环境变量:
+   Key: AMAP_KEY
+   Value: a6f79a420f94bba806d204ff2df46273
+7. 点击 "Deploy"
+8. 等待部署完成 (~2 分钟)
+
+【部署后验证】
+✓ 访问生成的 URL
+✓ 检查地图是否加载
+✓ 测试导航链接
+✓ 检查响应式设计
+✓ 验证微信号复制功能
+
+【自定义域名（可选）】
+1. 在 Vercel 项目设置中找到 "Domains"
+2. 添加你的域名
+3. 更新域名 DNS 设置指向 Vercel
+4. 等待 DNS 生效（24小时内）
+
+【重要密钥】
+- Amap API Key: a6f79a420f94bba806d204ff2df46273 ✓
+- 微信号: WiseInvest513 ✓
+- Twitter: @WiseInvest513 ✓
+- YouTube: @WiseInvest513 ✓
+
+【项目文件】
+├── index.html ............ 主页面（59KB）
+├── vercel.json ........... Vercel 配置
+├── README.md ............. 部署说明
+├── package.json .......... 项目信息
+└── .gitignore ............ Git 忽略规则
+
+【部署成功标志】
+- ✅ Vercel 显示 "Deployment Completed"
+- ✅ URL 可以访问
+- ✅ 地图正常显示（Amap加载完成）
+- ✅ 导航栏和所有交互功能正常
+
+【常见问题】
+Q: 地图显示不了？
+A: 检查环境变量 AMAP_KEY 是否正确设置
+
+Q: 部署了但样式不对？
+A: 清除浏览器缓存（Ctrl+Shift+Delete）
+
+Q: 需要多久才能访问？
+A: 通常 1-2 分钟，刷新页面可见
+
+================================
+准备好了吗？开始部署吧！🚀

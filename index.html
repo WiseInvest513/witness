@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>见证开户 — 足不出户，全球银行账户一站开通</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold-primary: #C9A96E;
+  --gold-light: #E8D5A8;
+  --gold-dark: #A07D3E;
+  --navy: #0A1628;
+  --navy-light: #12233D;
+  --navy-mid: #1A3050;
+  --slate: #2A3F5F;
+  --text-primary: #E8ECF2;
+  --text-secondary: #8FA3BF;
+  --text-muted: #5A7394;
+  --bg-card: rgba(18, 35, 61, 0.6);
+  --bg-card-hover: rgba(26, 48, 80, 0.8);
+  --border-subtle: rgba(201, 169, 110, 0.15);
+  --border-gold: rgba(201, 169, 110, 0.35);
+  --shadow-gold: 0 0 40px rgba(201, 169, 110, 0.08);
+  --radius: 12px;
+  --serif: 'Noto Serif SC', serif;
+  --sans: 'Noto Sans SC', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--navy);
+  color: var(--text-primary);
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(201,169,110,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(201,169,110,0.04) 0%, transparent 50%);
+  pointer-events: none; z-index: 0;
+}
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0;
+}
+.page-wrapper { position: relative; z-index: 1; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.section { padding: 100px 0; }
+.section-label {
+  font-family: var(--sans); font-size: 12px; font-weight: 600;
+  letter-spacing: 3px; text-transform: uppercase; color: var(--gold-primary);
+  margin-bottom: 12px; display: flex; align-items: center; gap: 10px; justify-content: center;
+}
+.section-label::before { content: ''; width: 24px; height: 1px; background: var(--gold-primary); }
+.section-title {
+  font-family: var(--serif); font-size: clamp(32px, 4.5vw, 48px);
+  font-weight: 700; margin-bottom: 20px; line-height: 1.2; text-align: center;
+}
+.section-subtitle { font-size: 17px; color: var(--text-secondary); max-width: 600px; line-height: 1.9; text-align: center; margin-left: auto; margin-right: auto; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+.animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 1100px;
+  z-index: 100;
+  padding: 20px 32px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(10, 22, 40, 0.6);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(201, 169, 110, 0.2);
+  border-radius: 100px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+nav.scrolled {
+  top: 12px;
+  padding: 12px 28px;
+  background: rgba(10, 22, 40, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(201, 169, 110, 0.3);
+  width: 95%;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; margin: 0; padding: 0; }
+.nav-logo { font-family: var(--serif); font-size: 18px; font-weight: 700; color: var(--gold-primary); text-decoration: none; letter-spacing: 1px; transition: font-size 0.4s ease; }
+nav.scrolled .nav-logo { font-size: 16px; }
+.nav-logo span { color: var(--text-primary); font-weight: 400; }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+nav.scrolled .nav-links { gap: 28px; }
+.nav-links a { font-size: 14px; color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+nav.scrolled .nav-links a { font-size: 13px; }
+.nav-links a:hover { color: var(--gold-primary); }
+.nav-cta { background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark)) !important; color: var(--navy) !important; padding: 8px 20px; border-radius: 6px; font-weight: 600 !important; font-size: 13px !important; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important; }
+nav.scrolled .nav-cta { padding: 6px 16px !important; font-size: 12px !important; }
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(201,169,110,0.3); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-top: 120px;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--navy) 0%, rgba(18, 35, 61, 0.7) 100%);
+}
+.hero::before { content: ''; position: absolute; top: -20%; right: -10%; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(201,169,110,0.07) 0%, transparent 70%); animation: float 8s ease-in-out infinite; }
+.hero-content { animation: fadeUp 1s ease forwards; }
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, rgba(201,169,110,0.15) 0%, rgba(201,169,110,0.08) 100%);
+  border: 1.5px solid var(--border-gold);
+  border-radius: 100px;
+  padding: 10px 24px;
+  font-size: 14px;
+  color: var(--gold-light);
+  font-weight: 500;
+  margin-bottom: 32px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+.hero-badge:hover { border-color: var(--gold-primary); background: linear-gradient(135deg, rgba(201,169,110,0.2) 0%, rgba(201,169,110,0.1) 100%); }
+.hero-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold-primary); animation: pulse-dot 2s infinite; }
+.hero h1 { font-family: var(--serif); font-size: clamp(36px, 5.5vw, 64px); font-weight: 900; line-height: 1.15; margin-bottom: 24px; letter-spacing: -0.5px; }
+.hero h1 .highlight { background: linear-gradient(135deg, var(--gold-primary), var(--gold-light), var(--gold-primary)); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: shimmer 4s linear infinite; }
+.hero p { font-size: 18px; color: var(--text-secondary); max-width: 560px; line-height: 1.9; margin-bottom: 40px; }
+.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+.btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 16px 36px; background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark)); color: var(--navy); font-weight: 700; font-size: 16px; border: none; border-radius: 8px; cursor: pointer; text-decoration: none; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 4px 15px rgba(201, 169, 110, 0.3), 0 0 0 0 rgba(201, 169, 110, 0); position: relative; }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(201,169,110,0.45), 0 0 20px rgba(201, 169, 110, 0.3); }
+.btn-primary:active { transform: translateY(-1px); }
+.btn-secondary { display: inline-flex; align-items: center; gap: 8px; padding: 16px 36px; background: transparent; color: var(--text-primary); font-weight: 600; font-size: 16px; border: 1.5px solid var(--border-gold); border-radius: 8px; cursor: pointer; text-decoration: none; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+.btn-secondary:hover { background: rgba(201,169,110,0.1); border-color: var(--gold-primary); color: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(201, 169, 110, 0.15); }
+.hero-stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; margin-top: 64px; padding-top: 48px; border-top: 1px solid var(--border-subtle); }
+.hero-stat-item { display: flex; flex-direction: column; align-items: center; padding: 20px; border-radius: 12px; background: rgba(201, 169, 110, 0.05); border: 1px solid rgba(201, 169, 110, 0.12); transition: all 0.3s ease; }
+.hero-stat-item:hover { background: rgba(201, 169, 110, 0.1); border-color: rgba(201, 169, 110, 0.25); transform: translateY(-2px); }
+.hero-stat-icon { font-size: 24px; margin-bottom: 8px; }
+.hero-stat-number { font-family: var(--serif); font-size: 32px; font-weight: 900; color: var(--gold-primary); text-align: center; }
+.hero-stat-label { font-size: 13px; color: var(--text-muted); margin-top: 8px; font-weight: 500; text-align: center; white-space: nowrap; }
+
+/* BANK CARDS */
+.banks-section { background: linear-gradient(180deg, var(--navy) 0%, var(--navy-light) 100%); }
+.bank-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; margin-top: 48px; }
+.bank-card {
+  background: linear-gradient(135deg, rgba(18,35,61,0.8) 0%, rgba(26,48,80,0.5) 100%);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(201, 169, 110, 0.05);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.bank-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(201,169,110,0.1) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+.bank-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 100% 0%, rgba(201,169,110,0.15) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+.bank-card:hover {
+  background: linear-gradient(135deg, rgba(18,35,61,0.95) 0%, rgba(26,48,80,0.7) 100%);
+  border-color: var(--gold-primary);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(201, 169, 110, 0.15);
+}
+.bank-card:hover::before { opacity: 1; }
+.bank-card:hover::after { opacity: 1; }
+
+/* Card sections */
+.bank-top { text-align: center; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid rgba(201,169,110,0.15); }
+.bank-name { font-family: var(--serif); font-size: 28px; font-weight: 700; color: var(--text-primary); margin-bottom: 12px; }
+.bank-tier { font-size: 13px; color: var(--gold-light); background: rgba(201,169,110,0.15); padding: 6px 14px; border-radius: 4px; font-weight: 600; display: inline-block; }
+
+/* Middle section */
+.bank-middle { flex: 1; margin-bottom: 32px; }
+.bank-deposit { font-size: 48px; font-family: var(--serif); font-weight: 900; color: var(--gold-primary); margin-bottom: 8px; text-align: center; }
+.bank-deposit span { font-size: 16px; font-weight: 400; color: var(--text-secondary); display: block; margin-top: 4px; }
+.bank-deposit-label { font-size: 14px; color: var(--text-secondary); margin-bottom: 28px; line-height: 1.6; text-align: center; }
+.bank-features { list-style: none; margin: 0; }
+.bank-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--text-secondary); padding: 10px 0; line-height: 1.6; }
+.bank-features .icon-pro {
+  color: #4ADE80;
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-weight: 700;
+  font-size: 16px;
+}
+.bank-features .icon-con {
+  color: #FB923C;
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+/* Bottom section */
+.bank-bottom { padding-top: 24px; border-top: 1px solid rgba(201,169,110,0.15); text-align: center; }
+.bank-best-for {
+  background: linear-gradient(135deg, rgba(201,169,110,0.12) 0%, rgba(201,169,110,0.04) 100%);
+  border: 1px solid rgba(201,169,110,0.25);
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 13px;
+  color: var(--gold-light);
+  font-weight: 500;
+  line-height: 1.7;
+  margin: 0;
+}
+.bank-best-for strong { color: var(--gold-primary); font-weight: 700; }
+
+/* COMPARISON TABLE */
+.compare-table-wrap { margin-top: 64px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border-subtle); background: var(--bg-card); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+.table-header-bar { display: flex; align-items: center; justify-content: space-between; padding: 24px 32px; background: linear-gradient(135deg, rgba(201,169,110,0.1) 0%, rgba(201,169,110,0.03) 100%); border-bottom: 1px solid var(--border-gold); }
+.table-header-bar h3 { font-family: var(--serif); font-size: 19px; font-weight: 700; }
+.table-header-bar span { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+.compare-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.compare-table { width: 100%; min-width: 900px; border-collapse: collapse; font-size: 15px; }
+.compare-table thead th { padding: 18px 18px; text-align: center; font-weight: 700; font-size: 14px; color: var(--gold-light); background: rgba(201,169,110,0.06); border-bottom: 2px solid var(--border-gold); white-space: nowrap; font-family: var(--sans); }
+.compare-table thead th:first-child { padding-left: 32px; text-align: left; }
+.compare-table tbody tr { transition: all 0.25s; }
+.compare-table tbody tr:nth-child(odd) { background: rgba(201,169,110,0.02); }
+.compare-table tbody tr:hover { background: rgba(201,169,110,0.08); }
+.compare-table tbody td { padding: 16px 18px; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--text-secondary); line-height: 1.7; vertical-align: middle; text-align: center; }
+.compare-table tbody td:first-child { padding-left: 32px; text-align: left; font-weight: 600; color: var(--text-primary); font-family: var(--serif); white-space: nowrap; }
+.compare-table tbody tr:last-child td { border-bottom: none; }
+.td-highlight { color: var(--gold-primary) !important; font-weight: 700; }
+.td-tag { display: inline-block; padding: 6px 12px; border-radius: 5px; font-size: 13px; font-weight: 600; line-height: 1.6; white-space: nowrap; }
+.td-tag.green { background: rgba(74,222,128,0.15); color: #4ADE80; border: 1px solid rgba(74,222,128,0.3); }
+.td-tag.orange { background: rgba(251,146,60,0.15); color: #FB923C; border: 1px solid rgba(251,146,60,0.3); }
+.td-tag.blue { background: rgba(96,165,250,0.15); color: #60A5FA; border: 1px solid rgba(96,165,250,0.3); }
+
+/* PROCESS */
+.process-section { background: var(--navy-light); position: relative; }
+.process-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--border-gold), transparent); }
+.steps-container { margin-top: 56px; position: relative; }
+.step-line { position: absolute; left: 28px; top: 28px; bottom: 28px; width: 3px; background: linear-gradient(180deg, var(--gold-primary) 0%, var(--gold-dark) 50%, rgba(201,169,110,0.1) 100%); }
+.step-item { display: flex; gap: 32px; padding: 32px 0; position: relative; }
+.step-number {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(201,169,110,0.2), rgba(201,169,110,0.05));
+  border: 2px solid var(--gold-primary);
+  border-radius: 50%;
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gold-primary);
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 0 20px rgba(201, 169, 110, 0.2);
+}
+.step-content h3 { font-family: var(--serif); font-size: 21px; font-weight: 700; margin-bottom: 10px; color: var(--text-primary); }
+.step-content p { font-size: 16px; color: var(--text-secondary); line-height: 1.8; }
+.step-tag { display: inline-block; margin-top: 12px; font-size: 13px; color: var(--gold-light); background: rgba(201,169,110,0.12); padding: 4px 12px; border-radius: 4px; font-weight: 500; }
+
+/* FAQ */
+.faq-section { background: linear-gradient(180deg, var(--navy-light) 0%, var(--navy) 100%); display: flex; align-items: center; }
+.faq-section .container { width: 100%; }
+.faq-list { margin-top: 48px; max-width: 800px; margin-left: auto; margin-right: auto; }
+.faq-item { border-bottom: 1px solid var(--border-subtle); }
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26px 0;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 17px;
+  font-weight: 600;
+  font-family: var(--sans);
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.3s;
+  line-height: 1.6;
+}
+.faq-question:hover { color: var(--gold-primary); }
+.faq-arrow { font-size: 20px; color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; margin-left: 16px; }
+.faq-item.open .faq-arrow { transform: rotate(45deg); color: var(--gold-primary); }
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; }
+.faq-item.open .faq-answer { max-height: 350px; padding-bottom: 24px; }
+.faq-answer p { font-size: 16px; color: var(--text-secondary); line-height: 1.9; }
+
+/* CTA */
+.cta-section { padding: 100px 0; text-align: center; position: relative; }
+.cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(201,169,110,0.08) 0%, transparent 70%); }
+.cta-box {
+  position: relative;
+  background: linear-gradient(135deg, rgba(18,35,61,0.8) 0%, rgba(26,48,80,0.5) 100%);
+  backdrop-filter: blur(10px);
+  border: 1.5px solid var(--border-gold);
+  border-radius: 20px;
+  padding: 72px 56px;
+  max-width: 750px;
+  margin: 0 auto;
+  box-shadow: 0 20px 60px rgba(201, 169, 110, 0.12);
+  transition: all 0.4s ease;
+}
+.cta-box:hover {
+  box-shadow: 0 30px 80px rgba(201, 169, 110, 0.18);
+  border-color: var(--gold-primary);
+  transform: translateY(-4px);
+}
+.cta-box h2 { font-family: var(--serif); font-size: clamp(28px, 4vw, 40px); font-weight: 700; margin-bottom: 20px; }
+.cta-box p { font-size: 17px; color: var(--text-secondary); margin-bottom: 40px; line-height: 1.9; }
+.cta-wechat { display: inline-flex; flex-direction: column; align-items: center; gap: 16px; }
+.wechat-id-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, rgba(201,169,110,0.15) 0%, rgba(201,169,110,0.06) 100%);
+  border: 1.5px solid var(--border-gold);
+  border-radius: 12px;
+  padding: 20px 32px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.wechat-id-box:hover {
+  background: linear-gradient(135deg, rgba(201,169,110,0.22) 0%, rgba(201,169,110,0.12) 100%);
+  border-color: var(--gold-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(201, 169, 110, 0.2);
+}
+.wechat-label { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+.wechat-id { font-family: var(--serif); font-size: 24px; font-weight: 700; color: var(--gold-primary); letter-spacing: 1px; user-select: all; }
+.cta-note { font-size: 14px; color: var(--text-muted); margin-top: 18px; }
+.cta-note strong { color: var(--gold-light); font-weight: 600; }
+.cta-trust { display: flex; justify-content: center; gap: 40px; margin-top: 48px; padding-top: 36px; border-top: 1px solid var(--border-subtle); flex-wrap: wrap; }
+.trust-item { text-align: center; padding: 16px 24px; border-radius: 10px; transition: all 0.3s ease; }
+.trust-item:hover { background: rgba(201, 169, 110, 0.08); transform: translateY(-2px); }
+.trust-number { font-family: var(--serif); font-size: 32px; font-weight: 900; color: var(--gold-primary); }
+.trust-label { font-size: 13px; color: var(--text-muted); margin-top: 6px; font-weight: 500; }
+
+/* FOOTER */
+footer { border-top: 1px solid var(--border-subtle); }
+.footer-nav {
+  background: linear-gradient(180deg, rgba(10, 22, 40, 0.5) 0%, rgba(10, 22, 40, 0.8) 100%);
+  padding: 60px 0 40px;
+  border-top: 1px solid var(--border-gold);
+}
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 60px;
+  align-items: flex-start;
+}
+.footer-brand {
+  flex: 0 0 320px;
+}
+.footer-logo {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gold-primary);
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+}
+.footer-logo span { color: var(--text-primary); font-weight: 400; }
+.footer-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin: 0;
+}
+.footer-links {
+  display: flex;
+  gap: 80px;
+}
+.footer-column h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.footer-column ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.footer-column li {
+  margin-bottom: 12px;
+}
+.footer-column a {
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.3s, transform 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.footer-column a:hover {
+  color: var(--gold-primary);
+  transform: translateX(4px);
+}
+.footer-bottom {
+  background: rgba(10, 22, 40, 0.9);
+  padding: 24px 0;
+  border-top: 1px solid var(--border-subtle);
+  text-align: center;
+}
+.footer-bottom p {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 4px 0;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 40px;
+  }
+  .footer-links {
+    gap: 40px;
+  }
+  .footer-brand {
+    flex: 1;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 1440px) {
+  .bank-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 1200px) {
+  .bank-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  nav {
+    width: 92%;
+    padding: 14px 20px;
+  }
+  nav.scrolled {
+    padding: 10px 16px;
+  }
+  .nav-links { display: none; }
+  .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .hero-stat-item { padding: 16px; }
+  .bank-grid { grid-template-columns: 1fr; }
+  .step-line { left: 18px; }
+  .step-number { width: 40px; height: 40px; font-size: 16px; }
+  .step-item { gap: 20px; }
+  .cta-box { padding: 40px 24px; }
+  .cta-trust { gap: 20px; flex-wrap: wrap; }
+  .section { padding: 72px 0; }
+}
+
+@media (max-width: 640px) {
+  nav {
+    width: 94%;
+    padding: 12px 16px;
+  }
+  nav.scrolled {
+    padding: 8px 12px;
+  }
+  .nav-logo { font-size: 14px; }
+  nav.scrolled .nav-logo { font-size: 13px; }
+  .bank-grid { grid-template-columns: 1fr; }
+  .cta-trust { flex-direction: column; }
+  .hero-stats { grid-template-columns: 1fr; gap: 12px; }
+  .hero-stat-item { padding: 14px; }
+}
+
+/* LOCATOR - 网点查询地图 */
+.locator-section { background: var(--navy-light); position: relative; }
+.locator-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--border-gold), transparent); }
+
+#amap-container {
+  height: 520px;
+  border-radius: var(--radius);
+  border: 2px solid var(--border-gold);
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(201, 169, 110, 0.12);
+  margin-top: 48px;
+}
+
+.bank-filter-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 48px;
+}
+
+.bank-filter-btn {
+  padding: 12px 28px;
+  background: transparent;
+  border: 1.5px solid var(--border-gold);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: var(--sans);
+}
+
+.bank-filter-btn:hover {
+  border-color: var(--gold-primary);
+  color: var(--gold-light);
+}
+
+.bank-filter-btn.active {
+  background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+  color: var(--navy);
+  border-color: var(--gold-primary);
+  box-shadow: 0 4px 15px rgba(201, 169, 110, 0.3);
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  #amap-container { height: 360px; }
+  .bank-filter-buttons { gap: 12px; }
+  .bank-filter-btn { padding: 10px 20px; font-size: 14px; }
+}
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">WISE<span>Witness</span></a>
+    <div class="nav-links">
+      <a href="#banks">银行对比</a>
+      <a href="#locator">网点查询</a>
+      <a href="#process">开户流程</a>
+      <a href="#faq">常见问题</a>
+      <a href="#contact" class="nav-cta">立即咨询</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge"><span class="dot"></span>见证开户 · 无需出境</div>
+      <h1>足不出户<br>开通<span class="highlight">全球银行账户</span></h1>
+      <p>无需亲赴海外，在国内外资银行网点完成见证开户，即可同步获取香港、新加坡、迪拜等地银行账户。50万起存，三个月达标，效力等同亲赴海外开户。</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          免费咨询
+        </a>
+        <a href="#banks" class="btn-secondary">查看银行对比 ↓</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat-item">
+          <div class="hero-stat-icon">👥</div>
+          <div class="hero-stat-number">1000+</div>
+          <div class="hero-stat-label">已服务客户</div>
+        </div>
+        <div class="hero-stat-item">
+          <div class="hero-stat-icon">✓</div>
+          <div class="hero-stat-number">98%</div>
+          <div class="hero-stat-label">下卡成功率</div>
+        </div>
+        <div class="hero-stat-item">
+          <div class="hero-stat-icon">🤝</div>
+          <div class="hero-stat-number">100+</div>
+          <div class="hero-stat-label">合作客户经理</div>
+        </div>
+        <div class="hero-stat-item">
+          <div class="hero-stat-icon">🏦</div>
+          <div class="hero-stat-number">5</div>
+          <div class="hero-stat-label">合作银行</div>
+        </div>
+        <div class="hero-stat-item">
+          <div class="hero-stat-icon">🗺️</div>
+          <div class="hero-stat-number">全国</div>
+          <div class="hero-stat-label">网点覆盖</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BANKS -->
+<section class="banks-section section" id="banks">
+  <div class="container">
+    <div class="animate-on-scroll">
+      <div class="section-label">Bank Comparison</div>
+      <div class="section-title">五大银行，各取所需</div>
+      <div class="section-subtitle">根据您的资金规模、转账需求和家庭情况，选择最适合的银行方案</div>
+    </div>
+
+    <div class="bank-grid">
+      <div class="bank-card animate-on-scroll">
+        <div class="bank-top">
+          <div class="bank-name">汇丰银行</div>
+          <div class="bank-tier">卓越理财</div>
+        </div>
+        <div class="bank-middle">
+          <div class="bank-deposit">50<span>万</span></div>
+          <div class="bank-deposit-label">内地见证开户门槛（香港需100万）</div>
+          <ul class="bank-features">
+            <li><span class="icon-pro">✓</span>信用卡权益极佳，红蓝狮子卡大额消费积分</li>
+            <li><span class="icon-pro">✓</span>品牌知名度高，全球网点覆盖广</li>
+            <li><span class="icon-con">△</span>新卡转账额度较低，单日约5万人民币</li>
+            <li><span class="icon-con">△</span>需三个月后方可调整转账额度</li>
+          </ul>
+        </div>
+        <div class="bank-bottom">
+          <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 12px;">见证费：<strong style="color: var(--gold-primary);">¥500–800</strong></div>
+          <div class="bank-best-for"><strong>适合：</strong>有大额消费需求、重视信用卡权益的人群</div>
+        </div>
+      </div>
+
+      <div class="bank-card animate-on-scroll">
+        <div class="bank-top">
+          <div class="bank-name">渣打银行</div>
+          <div class="bank-tier">优先理财</div>
+        </div>
+        <div class="bank-middle">
+          <div class="bank-deposit">50<span>万</span></div>
+          <div class="bank-deposit-label">需使用指定白名单律师完成见证</div>
+          <ul class="bank-features">
+            <li><span class="icon-pro">✓</span>存款利率同类最高，全球免费转账取现</li>
+            <li><span class="icon-pro">✓</span>转账额度最高，快速开到100万额度</li>
+            <li><span class="icon-pro">✓</span>可申请香港/新加坡/马来/迪拜等多地账户</li>
+            <li><span class="icon-con">△</span>无信用卡产品，几乎无开户礼遇</li>
+          </ul>
+        </div>
+        <div class="bank-bottom">
+          <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 12px;">见证费：<strong style="color: var(--gold-primary);">¥800</strong></div>
+          <div class="bank-best-for"><strong>适合：</strong>资金快进快出、有跨境转账需求的人群</div>
+        </div>
+      </div>
+
+      <div class="bank-card animate-on-scroll">
+        <div class="bank-top">
+          <div class="bank-name">东亚银行</div>
+          <div class="bank-tier">显卓理财</div>
+        </div>
+        <div class="bank-middle">
+          <div class="bank-deposit">50<span>万</span></div>
+          <div class="bank-deposit-label">需护照及180天停留权签证</div>
+          <ul class="bank-features">
+            <li><span class="icon-pro">✓</span>见证费用全免，大幅降低开户成本</li>
+            <li><span class="icon-pro">✓</span>存款利率较高，新客可享加息优惠</li>
+            <li><span class="icon-con">△</span>需额外准备护照和签证材料</li>
+            <li><span class="icon-con">△</span>开户材料需自行前往网点领取</li>
+          </ul>
+        </div>
+        <div class="bank-bottom">
+          <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 12px;">见证费：<strong style="color: var(--gold-primary);">免费</strong></div>
+          <div class="bank-best-for"><strong>适合：</strong>资金暂不使用、追求高利率收益的人群</div>
+        </div>
+      </div>
+
+      <div class="bank-card animate-on-scroll">
+        <div class="bank-top">
+          <div class="bank-name">恒生银行</div>
+          <div class="bank-tier">优越理财 Family+</div>
+        </div>
+        <div class="bank-middle">
+          <div class="bank-deposit">50<span>万</span></div>
+          <div class="bank-deposit-label">一人达标，全家3位亲属共享VIP</div>
+          <ul class="bank-features">
+            <li><span class="icon-pro">✓</span>家庭账户：配偶/父母/子女共享VIP权益</li>
+            <li><span class="icon-pro">✓</span>全家免管理费，跨境免费转账</li>
+            <li><span class="icon-pro">✓</span>一笔存款获取多个账户，额度翻倍</li>
+            <li><span class="icon-con">△</span>规模相对较小，品牌知名度稍低</li>
+          </ul>
+        </div>
+        <div class="bank-bottom">
+          <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 12px;">见证费：<strong style="color: var(--gold-primary);">可协商</strong></div>
+          <div class="bank-best-for"><strong>适合：</strong>家庭多人有境外账户需求、资金流转频繁的人群</div>
+        </div>
+      </div>
+
+      <div class="bank-card animate-on-scroll">
+        <div class="bank-top">
+          <div class="bank-name">星展银行</div>
+          <div class="bank-tier">丰盛理财</div>
+        </div>
+        <div class="bank-middle">
+          <div class="bank-deposit">100<span>万</span></div>
+          <div class="bank-deposit-label">新加坡主权国家银行，安全等级更高</div>
+          <ul class="bank-features">
+            <li><span class="icon-pro">✓</span>新加坡独立主权国家，资金安全性最高</li>
+            <li><span class="icon-pro">✓</span>私密性强，适合高净值客户</li>
+            <li><span class="icon-pro">✓</span>官方指定律师，费用透明固定</li>
+            <li><span class="icon-con">△</span>门槛最高，100万起存</li>
+          </ul>
+        </div>
+        <div class="bank-bottom">
+          <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 12px;">见证费：<strong style="color: var(--gold-primary);">¥500</strong></div>
+          <div class="bank-best-for"><strong>适合：</strong>高净值客户、重视资产安全和私密性的人群</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== COMPARISON TABLE ===== -->
+    <div class="compare-table-wrap animate-on-scroll">
+      <div class="table-header-bar">
+        <h3>五大银行核心指标一览</h3>
+        <span>← 左右滑动查看完整表格 →</span>
+      </div>
+      <div class="compare-scroll">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>银行</th>
+              <th>账户等级</th>
+              <th>存款门槛</th>
+              <th>见证费用</th>
+              <th>转账额度</th>
+              <th>信用卡</th>
+              <th>存款利率</th>
+              <th>核心优势</th>
+              <th>最适合</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>汇丰银行</td>
+              <td>卓越理财</td>
+              <td class="td-highlight">50万</td>
+              <td>¥500–800</td>
+              <td>初期 5万/日<br><span class="td-tag orange">3月后调额</span></td>
+              <td><span class="td-tag green">权益极佳</span></td>
+              <td>一般</td>
+              <td>红蓝狮子卡<br>大额消费积分</td>
+              <td><span class="td-tag blue">信用卡用户</span></td>
+            </tr>
+            <tr>
+              <td>渣打银行</td>
+              <td>优先理财</td>
+              <td class="td-highlight">50万</td>
+              <td>¥800</td>
+              <td><span class="td-tag green">100万/日</span></td>
+              <td>无</td>
+              <td><span class="td-tag green">同类最高</span></td>
+              <td>全球免费转账<br>多国账户申请</td>
+              <td><span class="td-tag blue">跨境转账</span></td>
+            </tr>
+            <tr>
+              <td>东亚银行</td>
+              <td>显卓理财</td>
+              <td class="td-highlight">50万</td>
+              <td><span class="td-tag green">免费</span></td>
+              <td>中等</td>
+              <td>无</td>
+              <td><span class="td-tag green">较高</span></td>
+              <td>零见证费<br>需护照+签证</td>
+              <td><span class="td-tag blue">高利率收益</span></td>
+            </tr>
+            <tr>
+              <td>恒生银行</td>
+              <td>优越 Family+</td>
+              <td class="td-highlight">50万</td>
+              <td>可协商</td>
+              <td>中高</td>
+              <td>有</td>
+              <td>中等</td>
+              <td>一人开户<br>全家共享VIP</td>
+              <td><span class="td-tag blue">家庭需求</span></td>
+            </tr>
+            <tr>
+              <td>星展银行</td>
+              <td>丰盛理财</td>
+              <td class="td-highlight">100万</td>
+              <td>¥500</td>
+              <td>中等</td>
+              <td>无</td>
+              <td>中等</td>
+              <td>新加坡主权银行<br>安全等级最高</td>
+              <td><span class="td-tag blue">高净值客户</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- LOCATOR - 网点查询地图 -->
+<section class="locator-section section" id="locator">
+  <div class="container">
+    <div class="animate-on-scroll">
+      <div class="section-label">Branch Locator</div>
+      <div class="section-title">查询当地网点</div>
+      <div class="section-subtitle">点击下方按钮，在交互式地图上查看各银行在全国的网点分布位置</div>
+    </div>
+
+    <div class="bank-filter-buttons">
+      <button class="bank-filter-btn active" data-bank="hsbc">🏦 汇丰银行</button>
+      <button class="bank-filter-btn" data-bank="scb">🏦 渣打银行</button>
+      <button class="bank-filter-btn" data-bank="bea">🏦 东亚银行</button>
+      <button class="bank-filter-btn" data-bank="hang-seng">🏦 恒生银行</button>
+      <button class="bank-filter-btn" data-bank="dbs">🏦 星展银行</button>
+    </div>
+
+    <div id="amap-container" class="animate-on-scroll"></div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section section" id="process">
+  <div class="container">
+    <div class="animate-on-scroll">
+      <div class="section-label">Process</div>
+      <div class="section-title">五步完成，全程无忧</div>
+      <div class="section-subtitle">从咨询到收卡，最快一个月内完成全部流程</div>
+    </div>
+    <div class="steps-container">
+      <div class="step-line"></div>
+      <div class="step-item animate-on-scroll">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>联系咨询，匹配方案</h3>
+          <p>添加微信联系 Wise，根据您的需求和资金情况，推荐最适合的银行方案，并对接当地外资银行客户经理，预约时间和网点。</p>
+          <span class="step-tag">全国网点均可对接</span>
+        </div>
+      </div>
+      <div class="step-item animate-on-scroll">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>亲赴网点，完成开户</h3>
+          <p>本人携带身份证和实名手机号，前往所在城市的外资银行网点，约30分钟即可完成国内账户开户。</p>
+          <span class="step-tag">仅需跑一趟 · 约30分钟</span>
+        </div>
+      </div>
+      <div class="step-item animate-on-scroll">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3>律师见证，委托办理</h3>
+          <p>客户经理对接指定律师，您通过视频通话完成见证（约10分钟），委托律师代为办理海外账户开设事宜。</p>
+          <span class="step-tag">视频10分钟 · 无需出门</span>
+        </div>
+      </div>
+      <div class="step-item animate-on-scroll">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h3>存款达标，等待审批</h3>
+          <p>在国内账户存入50万/100万（视银行而定），保持至少3个完整自然月，期间可享受新客加息优惠。</p>
+          <span class="step-tag">存款期间享新客加息</span>
+        </div>
+      </div>
+      <div class="step-item animate-on-scroll">
+        <div class="step-number">5</div>
+        <div class="step-content">
+          <h3>收卡激活，开启使用</h3>
+          <p>审批通过后，通过国际快递收取银行卡并激活，效力完全等同亲赴海外开户，后续可申请免除年费和管理费。</p>
+          <span class="step-tag">国际快递到家 · 无额外费用</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section section" id="faq">
+  <div class="container">
+    <div class="animate-on-scroll">
+      <div class="section-label">FAQ</div>
+      <div class="section-title">常见问题</div>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item animate-on-scroll">
+        <button class="faq-question">见证开户和亲自去香港开户有什么区别？<span class="faq-arrow">+</span></button>
+        <div class="faq-answer"><p>两者法律效力完全相同。见证开户是由国内外资银行网点的客户经理代为审核您的身份，再委托律师完成境外账户的开立，省去了亲赴海外的时间和费用。唯一区别是内地见证开户的VIP门槛更低（如汇丰卓越在香港需100万，内地只需50万）。</p></div>
+      </div>
+      <div class="faq-item animate-on-scroll">
+        <button class="faq-question">没有护照/通行证也能开户吗？<span class="faq-arrow">+</span></button>
+        <div class="faq-answer"><p>可以。汇丰、渣打、恒生和星展等银行只需身份证即可完成见证开户。东亚银行需要护照和180天停留签证。对于不方便获取护照原件的朋友（如体制内人员），可以选择不需要护照的银行方案。</p></div>
+      </div>
+      <div class="faq-item animate-on-scroll">
+        <button class="faq-question">50万存满三个月后可以取出吗？<span class="faq-arrow">+</span></button>
+        <div class="faq-answer"><p>可以。存满3个完整自然月达标后，资金即可自由支配。很多客户选择先在一家银行存三个月，达标后再把资金转到其他银行继续操作。存款期间还可以享受新客加息优惠。</p></div>
+      </div>
+      <div class="faq-item animate-on-scroll">
+        <button class="faq-question">可以同时开多个国家的银行账户吗？<span class="faq-arrow">+</span></button>
+        <div class="faq-answer"><p>可以。以渣打为例，当日均余额超50万达标后，可以申请香港、新加坡、马来西亚、迪拜、泰国、越南、英美等地的账户。各账户相互独立，可按需申请一个或多个。其中香港下卡率几乎100%，新加坡可特殊申请免费。</p></div>
+      </div>
+      <div class="faq-item animate-on-scroll">
+        <button class="faq-question">全程需要几次亲自到场？<span class="faq-arrow">+</span></button>
+        <div class="faq-answer"><p>仅需亲赴银行网点一次（约30分钟），后续的律师见证通过视频完成（约10分钟），收卡通过国际快递。全程只需要跑一趟网点。</p></div>
+      </div>
+      <div class="faq-item animate-on-scroll">
+        <button class="faq-question">费用具体怎么收？会不会有隐形消费？<span class="faq-arrow">+</span></button>
+        <div class="faq-answer"><p>费用透明：见证费是支付给律师的（汇丰约500-800元，渣打约800元，星展500元，东亚免费）。不会推荐任何理财产品，不会有隐形收费。只以开户为目的，存款达标后可自由支配。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="container">
+    <div class="cta-box animate-on-scroll">
+      <h2>开启您的全球资产配置</h2>
+      <p>添加微信，备注「开户」，获取专属银行方案推荐<br>全国外资银行网点均可对接，一对一全程指导</p>
+      <div class="cta-wechat">
+        <div class="wechat-id-box" id="wechat-copy-btn" style="cursor: pointer; position: relative;">
+          <div>
+            <div class="wechat-label">微信号</div>
+            <div class="wechat-id">WiseInvest513</div>
+            <div style="font-size: 12px; color: #8FA3BF; margin-top: 4px; font-weight: 400;">点击复制</div>
+          </div>
+        </div>
+        <div class="cta-note">添加时请备注 <strong>「开户」</strong>，以便快速对接</div>
+      </div>
+      <div class="cta-trust">
+        <div class="trust-item"><div class="trust-number">1000+</div><div class="trust-label">已服务客户</div></div>
+        <div class="trust-item"><div class="trust-number">98%</div><div class="trust-label">下卡成功率</div></div>
+        <div class="trust-item"><div class="trust-number">100+</div><div class="trust-label">对接客户经理</div></div>
+        <div class="trust-item"><div class="trust-number">0</div><div class="trust-label">隐形消费</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-nav">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="footer-logo">WISE<span>Witness</span></div>
+          <p class="footer-desc">专业的见证开户咨询服务<br>足不出户，开通全球银行账户</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-column">
+            <h4>快速导航</h4>
+            <ul>
+              <li><a href="#banks">银行对比</a></li>
+              <li><a href="#locator">网点查询</a></li>
+              <li><a href="#process">开户流程</a></li>
+              <li><a href="#faq">常见问题</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h4>其他</h4>
+            <ul>
+              <li><a href="https://www.wise-invest.org/" target="_blank">🌐 投资主站</a></li>
+              <li><a href="https://x.com/WiseInvest513" target="_blank">𝕏 Twitter / X</a></li>
+              <li><a href="https://www.youtube.com/@WiseInvest513" target="_blank">▶ YouTube</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p>© 2026 WiseWitness · 见证开户咨询服务</p>
+      <p>仅提供信息咨询，不构成任何投资建议</p>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+<script src="https://webapi.amap.com/loader.js"></script>
+<script>
+const bankBranchData = {
+  hsbc: {
+    name: '汇丰银行',
+    branches: [
+      { city: '北京', branches: ['中粮广场支行', '分行', '启皓中心支行', '融科资讯中心支行'], coords: [116.397, 39.908] },
+      { city: '上海', branches: ['商城支行', '香港广场支行', '徐家汇中心支行', '联洋支行', '古北路支行', '中山公园支行'], coords: [121.469, 31.230] },
+      { city: '广州', branches: ['花园酒店支行', '天河城支行', '国际金融中心支行'], coords: [113.264, 23.129] },
+      { city: '深圳', branches: ['香格里拉支行', '福田中心区支行', '深圳湾支行'], coords: [114.058, 22.543] },
+      { city: '天津', coords: [117.202, 39.084] },
+      { city: '青岛', coords: [120.369, 36.094] },
+      { city: '沈阳', coords: [123.429, 41.804] },
+      { city: '大连', branches: ['柏威年支行'], coords: [121.618, 38.913] },
+      { city: '哈尔滨', coords: [126.534, 45.803] },
+      { city: '杭州', coords: [120.155, 30.274] },
+      { city: '宁波', coords: [121.564, 29.868] },
+      { city: '南京', branches: ['新街口支行'], coords: [118.797, 32.060] },
+      { city: '苏州', coords: [120.595, 31.299] },
+      { city: '无锡', coords: [120.312, 31.491] },
+      { city: '昆山', coords: [120.959, 31.391] },
+      { city: '厦门', coords: [118.088, 24.479] },
+      { city: '武汉', coords: [114.306, 30.593] },
+      { city: '郑州', coords: [113.665, 34.757] },
+      { city: '长沙', coords: [112.938, 28.194] },
+      { city: '西安', coords: [108.948, 34.341] },
+      { city: '成都', coords: [104.066, 30.572] },
+      { city: '重庆', coords: [106.573, 29.563] },
+      { city: '唐山', coords: [117.517, 39.633] },
+      { city: '昆明', coords: [102.712, 24.880] }
+    ]
+  },
+  scb: {
+    name: '渣打银行',
+    branches: [
+      { city: '北京', branches: ['环球中心支行', '燕莎中心支行', '业运村支行', '华贸支行', '国贸支行', '中关村支行', '东方广场支行', '东直门支行', '永定门支行'], coords: [116.397, 39.908] },
+      { city: '上海', branches: ['虹桥支行', '古北支行', '静安支行', '浦西支行', '徐家汇支行', '南京西路支行', '新天地支行', '城建国际支行', '陆家嘴支行', '闵行支行'], coords: [121.469, 31.230] },
+      { city: '广州', branches: ['佛山分行', '天河支行', '珠江新城支行'], coords: [113.264, 23.129] },
+      { city: '深圳', branches: ['卓越支行', '罗湖支行', '华润城支行', '深圳湾支行', '太子路支行'], coords: [114.058, 22.543] },
+      { city: '珠海', branches: ['珠海分行', '珠海九洲支行'], coords: [113.568, 22.274] },
+      { city: '天津', branches: ['天津友谊路', '天津凯德国贸'], coords: [117.202, 39.084] },
+      { city: '重庆', branches: ['重庆金开支行', '重庆江北嘴支行'], coords: [106.573, 29.563] },
+      { city: '杭州', coords: [120.155, 30.274] },
+      { city: '宁波', coords: [121.564, 29.868] },
+      { city: '厦门', coords: [118.088, 24.479] },
+      { city: '南京', coords: [118.797, 32.060] },
+      { city: '青岛', coords: [120.369, 36.094] },
+      { city: '沈阳', coords: [123.429, 41.804] },
+      { city: '成都', coords: [104.066, 30.572] },
+      { city: '福州', coords: [119.297, 26.084] },
+      { city: '武汉', coords: [114.306, 30.593] },
+      { city: '长沙', coords: [112.938, 28.194] },
+      { city: '郑州', coords: [113.665, 34.757] },
+      { city: '西安', coords: [108.948, 34.341] },
+      { city: '大连', coords: [121.618, 38.913] }
+    ]
+  },
+  bea: {
+    name: '东亚银行',
+    branches: [
+      { city: '北京', branches: ['朝阳望京支行', '中关村支行', '金融街支行'], coords: [116.397, 39.908] },
+      { city: '上海', branches: ['浦西支行', '天山支行', '新天地支行', '徐家汇支行', '静安支行'], coords: [121.469, 31.230] },
+      { city: '广州', branches: ['南沙支行', '珠江新城支行', '江南西支行', '佛山支行', '肇庆支行', '顺德支行', '揭阳支行', '东莞支行', '汕头支行'], coords: [113.264, 23.129] },
+      { city: '深圳', branches: ['福田支行', '罗湖支行', '南山支行', '深圳湾支行', '福田口岸支行'], coords: [114.058, 22.543] },
+      { city: '珠海', branches: ['横琴支行', '珠海拱北支行', '中山支行', '江门支行'], coords: [113.568, 22.274] },
+      { city: '沈阳', coords: [123.429, 41.804] },
+      { city: '哈尔滨', coords: [126.534, 45.803] },
+      { city: '大连', coords: [121.618, 38.913] },
+      { city: '天津', coords: [117.202, 39.084] },
+      { city: '石家庄', coords: [114.540, 38.042] },
+      { city: '济南', coords: [117.120, 36.652] },
+      { city: '青岛', coords: [120.369, 36.094] },
+      { city: '杭州', coords: [120.155, 30.274] },
+      { city: '南京', coords: [118.797, 32.060] },
+      { city: '合肥', coords: [117.227, 31.860] },
+      { city: '苏州', coords: [120.595, 31.299] },
+      { city: '厦门', coords: [118.088, 24.479] },
+      { city: '福州', coords: [119.297, 26.084] },
+      { city: '武汉', coords: [114.306, 30.593] },
+      { city: '长沙', coords: [112.938, 28.194] },
+      { city: '郑州', coords: [113.665, 34.757] },
+      { city: '重庆', coords: [106.573, 29.563] },
+      { city: '成都', coords: [104.066, 30.572] },
+      { city: '西安', coords: [108.948, 34.341] },
+      { city: '乌鲁木齐', coords: [87.629, 43.793] },
+      { city: '南昌', coords: [115.858, 28.683] },
+      { city: '昆明', coords: [102.712, 24.880] },
+      { city: '宁波', coords: [121.564, 29.868] }
+    ]
+  },
+  'hang-seng': {
+    name: '恒生银行',
+    branches: [
+      { city: '北京', branches: ['北京分行', '北京西城支行', '北京国贸支行'], coords: [116.397, 39.908] },
+      { city: '上海', branches: ['上海分行', '自贸区支行', '环贸广场支行', '上海古北支行', '上海浦东支行', '中山公园支行'], coords: [121.469, 31.230] },
+      { city: '广州', branches: ['广州分行'], coords: [113.264, 23.129] },
+      { city: '深圳', branches: ['深圳分行', '后海支行', '罗湖支行', '东莞分行'], coords: [114.058, 22.543] },
+      { city: '南京', coords: [118.797, 32.060] },
+      { city: '杭州', coords: [120.155, 30.274] },
+      { city: '宁波', coords: [121.564, 29.868] },
+      { city: '福州', coords: [119.297, 26.084] },
+      { city: '厦门', coords: [118.088, 24.479] },
+      { city: '天津', coords: [117.202, 39.084] },
+      { city: '济南', coords: [117.120, 36.652] },
+      { city: '昆明', coords: [102.712, 24.880] },
+      { city: '成都', coords: [104.066, 30.572] }
+    ]
+  },
+  dbs: {
+    name: '星展银行',
+    branches: [
+      { city: '北京', coords: [116.397, 39.908] },
+      { city: '上海', coords: [121.469, 31.230] },
+      { city: '深圳', coords: [114.058, 22.543] },
+      { city: '广州', coords: [113.264, 23.129] }
+    ]
+  }
+};
+
+const AMAP_KEY = 'a6f79a420f94bba806d204ff2df46273';
+
+// 地区颜色映射
+const regionColors = {
+  '华北': { bg: '#60A5FA', label: '华北' },      // 蓝色
+  '东北': { bg: '#A78BFA', label: '东北' },      // 紫色
+  '华东': { bg: '#4ADE80', label: '华东' },      // 绿色
+  '华中': { bg: '#FB923C', label: '华中' },      // 橙色
+  '华南': { bg: '#F87171', label: '华南' },      // 红色
+  '西部': { bg: '#06B6D4', label: '西部' }       // 青色
+};
+
+// 城市到地区的映射
+const cityToRegion = {
+  // 华北
+  '北京': '华北', '天津': '华北', '青岛': '华北', '唐山': '华北', '石家庄': '华北', '济南': '华北',
+  // 东北
+  '沈阳': '东北', '大连': '东北', '哈尔滨': '东北',
+  // 华东
+  '上海': '华东', '杭州': '华东', '宁波': '华东', '南京': '华东', '苏州': '华东', '无锡': '华东', '昆山': '华东',
+  '厦门': '华东', '福州': '华东', '合肥': '华东',
+  // 华中
+  '武汉': '华中', '郑州': '华中', '长沙': '华中', '南昌': '华中',
+  // 华南
+  '广州': '华南', '深圳': '华南', '珠海': '华南', '佛山': '华南', '东莞': '华南',
+  // 西部
+  '西安': '西部', '成都': '西部', '重庆': '西部', '昆明': '西部', '乌鲁木齐': '西部'
+};
+
+function getRegionColor(city) {
+  const region = cityToRegion[city] || '华东';
+  return regionColors[region].bg;
+}
+
+let map = null;
+let markers = [];
+let AMap = null;
+
+function clearMarkers() {
+  markers.forEach(marker => marker.setMap(null));
+  markers = [];
+}
+
+function createMarkerContent(city) {
+  const color = getRegionColor(city);
+  return `<div style="background: ${color}; color: white; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: 700; white-space: nowrap; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">${city}</div>`;
+}
+
+function loadBankMarkers(bankCode) {
+  clearMarkers();
+  const bankData = bankBranchData[bankCode];
+  if (!bankData || !map) return;
+
+  bankData.branches.forEach((location) => {
+    const regionColor = getRegionColor(location.city);
+    const region = cityToRegion[location.city] || '华东';
+
+    const marker = new AMap.Marker({
+      position: new AMap.LngLat(location.coords[0], location.coords[1]),
+      title: location.city,
+      map: map,
+      content: createMarkerContent(location.city)
+    });
+
+    marker.on('click', function() {
+      let content = `
+        <div style="background: #12233D; color: #E8ECF2; padding: 12px; border-radius: 6px; min-width: 180px; border: 2px solid ${regionColor};">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <h4 style="margin: 0; color: #C9A96E; font-size: 13px; font-weight: 700;">${location.city}</h4>
+            <span style="background: ${regionColor}; color: white; padding: 2px 8px; border-radius: 3px; font-size: 11px; font-weight: 600;">${region}</span>
+          </div>
+          <h5 style="margin: 0 0 4px 0; color: white; font-size: 12px; font-weight: 600;">${bankData.name}</h5>
+      `;
+
+      if (location.branches && location.branches.length > 0) {
+        content += `<ul style="margin: 0; padding-left: 0; list-style: none; font-size: 12px;">
+          ${location.branches.map(b => `<li style="margin: 4px 0;">• ${b}</li>`).join('')}
+        </ul>`;
+      } else {
+        content += `<p style="margin: 0; font-size: 12px; color: #8FA3BF;">有营业网点</p>`;
+      }
+
+      content += `</div>`;
+
+      const infoWindow = new AMap.InfoWindow({
+        content: content,
+        offset: new AMap.Pixel(0, -30)
+      });
+      infoWindow.open(map, marker.getPosition());
+    });
+
+    markers.push(marker);
+  });
+}
+
+function initMap() {
+  AMapLoader.load({
+    key: AMAP_KEY,
+    version: '2.0',
+    plugins: ['AMap.Marker', 'AMap.InfoWindow']
+  }).then((AMapLib) => {
+    AMap = AMapLib;
+    map = new AMap.Map('amap-container', {
+      viewMode: '2D',
+      zoom: 5,
+      center: [113.6, 34.7],
+      resizeEnable: true
+    });
+    loadBankMarkers('hsbc');
+    console.log('地图加载成功');
+  }).catch(e => {
+    console.error('地图加载失败:', e);
+    document.getElementById('amap-container').innerHTML =
+      '<div style="padding: 40px; text-align: center; color: #C9A96E; font-size: 14px;">⚠️ 地图加载失败，请稍后刷新重试</div>';
+  });
+}
+
+document.querySelectorAll('.bank-filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.bank-filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    loadBankMarkers(btn.getAttribute('data-bank'));
+  });
+});
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initMap);
+} else {
+  initMap();
+}
+</script>
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 200));
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+// 微信号复制功能
+const wechatCopyBtn = document.getElementById('wechat-copy-btn');
+if (wechatCopyBtn) {
+  wechatCopyBtn.addEventListener('click', async () => {
+    const wechatId = 'WiseInvest513';
+    try {
+      await navigator.clipboard.writeText(wechatId);
+      const originalText = wechatCopyBtn.innerHTML;
+      wechatCopyBtn.innerHTML = '<div><div class="wechat-label">微信号</div><div class="wechat-id" style="color: #4ADE80;">✓ 已复制</div></div>';
+      setTimeout(() => {
+        wechatCopyBtn.innerHTML = originalText;
+      }, 2000);
+    } catch (err) {
+      alert('复制失败，请手动复制');
+    }
+  });
+}
+
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>
