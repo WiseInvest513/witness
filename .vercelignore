@@ -1,0 +1,2 @@
+# 这是纯静态 HTML 项目，不需要构建
+# Vercel 会直接部署 index.html
