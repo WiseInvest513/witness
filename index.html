@@ -345,7 +345,9 @@ nav.scrolled .nav-cta { padding: 6px 16px !important; font-size: 12px !important
 }
 .cta-box h2 { font-family: var(--serif); font-size: clamp(28px, 4vw, 40px); font-weight: 700; margin-bottom: 20px; }
 .cta-box p { font-size: 17px; color: var(--text-secondary); margin-bottom: 40px; line-height: 1.9; }
-.cta-wechat { display: inline-flex; flex-direction: column; align-items: center; gap: 16px; }
+.cta-wechat { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+.wechat-qrcode { text-align: center; padding: 20px; background: rgba(201, 169, 110, 0.05); border-radius: 12px; border: 1px solid rgba(201, 169, 110, 0.15); }
+.wechat-qrcode img { filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2)); }
 .wechat-id-box {
   display: flex;
   align-items: center;
@@ -942,6 +944,10 @@ footer { border-top: 1px solid var(--border-subtle); }
       <h2>开启您的全球资产配置</h2>
       <p>添加微信，备注「开户」，获取专属银行方案推荐<br>全国外资银行网点均可对接，一对一全程指导</p>
       <div class="cta-wechat">
+        <div class="wechat-qrcode">
+          <img src="wx.jpg" alt="WiseInvest513 微信二维码" style="width: 100%; max-width: 180px; border-radius: 12px;">
+          <div style="font-size: 12px; color: #8FA3BF; margin-top: 12px; font-weight: 400; text-align: center;">扫码添加好友</div>
+        </div>
         <div class="wechat-id-box" id="wechat-copy-btn" style="cursor: pointer; position: relative;">
           <div>
             <div class="wechat-label">微信号</div>
