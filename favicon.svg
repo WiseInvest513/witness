@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#12233D"/>
+      <stop offset="100%" stop-color="#0A1628"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E8D5A8"/>
+      <stop offset="50%" stop-color="#C9A96E"/>
+      <stop offset="100%" stop-color="#A07D3E"/>
+    </linearGradient>
+  </defs>
+  <!-- 背景圆形 -->
+  <circle cx="32" cy="32" r="32" fill="url(#bg)"/>
+  <!-- 金色细圆边 -->
+  <circle cx="32" cy="32" r="29" fill="none" stroke="url(#gold)" stroke-width="1.2" opacity="0.6"/>
+  <!-- 盾牌形状 -->
+  <path d="M32 10 L50 18 L50 34 Q50 48 32 56 Q14 48 14 34 L14 18 Z" fill="none" stroke="url(#gold)" stroke-width="1.5" opacity="0.8"/>
+  <!-- W 字母 -->
+  <text x="32" y="41" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="bold" fill="url(#gold)" text-anchor="middle" letter-spacing="-1">W</text>
+</svg>

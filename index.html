@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <title>Wise-Witness 见证开户 — 足不出户，全球银行账户一站开通</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -847,6 +848,15 @@ footer { border-top: 1px solid var(--border-subtle); }
   </div>
 </section>
 
+<!-- 四月福利 -->
+<section class="section" style="background:var(--navy);text-align:center;padding:60px 20px;">
+  <div class="container">
+    <div class="section-label">PROMOTION</div>
+    <div class="section-title" style="margin-bottom:32px;">四月专属福利</div>
+    <img src="四月福利.png" alt="四月福利" style="max-width:680px;width:100%;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.4);">
+  </div>
+</section>
+
 <!-- PROCESS -->
 <section class="process-section section" id="process">
   <div class="container">
@@ -1305,6 +1315,21 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     const target = document.querySelector(a.getAttribute('href'));
     if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
+});
+</script>
+
+<!-- 四月福利弹窗 -->
+<div id="promo-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.65);display:flex;align-items:center;justify-content:center;">
+  <div style="position:relative;max-width:420px;width:90vw;">
+    <img src="四月福利.png" alt="四月福利" style="display:block;max-width:100%;max-height:70vh;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.5);">
+    <button onclick="document.getElementById('promo-modal').style.display='none'" style="position:absolute;top:-14px;right:-14px;width:32px;height:32px;border-radius:50%;border:none;background:#C9A96E;color:#0A1628;font-size:18px;font-weight:bold;cursor:pointer;line-height:32px;text-align:center;">×</button>
+  </div>
+</div>
+<script>
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    document.getElementById('promo-modal').style.display = 'flex';
+  }, 1000);
 });
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
