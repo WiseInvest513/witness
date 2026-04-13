@@ -848,12 +848,13 @@ footer { border-top: 1px solid var(--border-subtle); }
   </div>
 </section>
 
-<!-- 四月福利 -->
+<!-- 加入群聊 -->
 <section class="section" style="background:var(--navy);text-align:center;padding:60px 20px;">
   <div class="container">
-    <div class="section-label">PROMOTION</div>
-    <div class="section-title" style="margin-bottom:32px;">四月专属福利</div>
-    <img src="四月福利.png" alt="四月福利" style="max-width:680px;width:100%;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.4);">
+    <div class="section-label">COMMUNITY</div>
+    <div class="section-title" style="margin-bottom:32px;">加入群聊</div>
+    <img src="粉丝群.png" alt="群聊二维码" style="max-width:560px;width:100%;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.4);">
+    <div style="color:rgba(255,255,255,0.5);font-size:13px;margin-top:20px;">扫码加入群聊，与志同道合的投资者一起交流</div>
   </div>
 </section>
 
@@ -1318,18 +1319,35 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 });
 </script>
 
-<!-- 四月福利弹窗 -->
-<div id="promo-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.65);display:flex;align-items:center;justify-content:center;">
-  <div style="position:relative;max-width:420px;width:90vw;">
-    <img src="四月福利.png" alt="四月福利" style="display:block;max-width:100%;max-height:70vh;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.5);">
-    <button onclick="document.getElementById('promo-modal').style.display='none'" style="position:absolute;top:-14px;right:-14px;width:32px;height:32px;border-radius:50%;border:none;background:#C9A96E;color:#0A1628;font-size:18px;font-weight:bold;cursor:pointer;line-height:32px;text-align:center;">×</button>
+<!-- 加入群聊弹窗 -->
+<div id="promo-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.65);align-items:center;justify-content:center;">
+  <div style="position:relative;max-width:420px;width:90vw;background:#fff;border-radius:20px;padding:32px 28px 28px;box-shadow:0 20px 60px rgba(0,0,0,0.5);">
+    <button onclick="closeModal()" style="position:absolute;top:14px;right:14px;width:28px;height:28px;border-radius:50%;border:none;background:#f0f0f0;color:#555;font-size:16px;font-weight:bold;cursor:pointer;line-height:28px;text-align:center;">×</button>
+    <div style="font-size:11px;font-weight:600;color:#07C160;letter-spacing:1px;margin-bottom:6px;">WISEINVEST 社区</div>
+    <div style="font-size:20px;font-weight:700;color:#111;margin-bottom:20px;">欢迎加入官方微信群聊</div>
+    <img src="粉丝群.png" alt="群聊二维码" style="display:block;width:100%;border-radius:14px;">
+    <div style="font-size:12px;color:#aaa;text-align:center;margin-top:12px;">扫码加入群聊，与志同道合的投资者一起交流</div>
+    <button onclick="window.open('https://wise.com','_blank')" style="display:block;width:100%;margin-top:16px;padding:14px;background:#07C160;color:#fff;border:none;border-radius:10px;font-size:16px;font-weight:600;cursor:pointer;">进入平台</button>
+    <div onclick="dismissModal()" style="text-align:center;margin-top:10px;font-size:13px;color:#aaa;cursor:pointer;text-decoration:underline;">今日不再提示</div>
   </div>
 </div>
 <script>
+function closeModal() {
+  document.getElementById('promo-modal').style.display = 'none';
+}
+function dismissModal() {
+  closeModal();
+  var today = new Date().toDateString();
+  localStorage.setItem('modal-dismissed', today);
+}
 window.addEventListener('load', function() {
-  setTimeout(function() {
-    document.getElementById('promo-modal').style.display = 'flex';
-  }, 1000);
+  var dismissed = localStorage.getItem('modal-dismissed');
+  var today = new Date().toDateString();
+  if (dismissed !== today) {
+    setTimeout(function() {
+      document.getElementById('promo-modal').style.display = 'flex';
+    }, 1000);
+  }
 });
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
