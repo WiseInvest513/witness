@@ -956,15 +956,8 @@ footer { border-top: 1px solid var(--border-subtle); }
       <p>添加微信，备注「开户」，获取专属银行方案推荐<br>全国外资银行网点均可对接，一对一全程指导</p>
       <div class="cta-wechat">
         <div class="wechat-qrcode">
-          <img src="wx.jpg" alt="WiseInvest513 微信二维码" style="width: 100%; max-width: 240px; border-radius: 12px;">
+          <img src="企业微信.png" alt="企业微信二维码" style="width: 100%; max-width: 240px; border-radius: 12px;">
           <div style="font-size: 12px; color: #8FA3BF; margin-top: 12px; font-weight: 400; text-align: center;">扫码添加好友</div>
-        </div>
-        <div class="wechat-id-box" id="wechat-copy-btn" style="cursor: pointer; position: relative;">
-          <div>
-            <div class="wechat-label">微信号</div>
-            <div class="wechat-id">WiseInvest513</div>
-            <div style="font-size: 12px; color: #8FA3BF; margin-top: 4px; font-weight: 400;">点击复制</div>
-          </div>
         </div>
         <div class="cta-note">添加时请备注 <strong>「开户」</strong>，以便快速对接</div>
       </div>
@@ -1283,23 +1276,6 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
 
-// 微信号复制功能
-const wechatCopyBtn = document.getElementById('wechat-copy-btn');
-if (wechatCopyBtn) {
-  wechatCopyBtn.addEventListener('click', async () => {
-    const wechatId = 'WiseInvest513';
-    try {
-      await navigator.clipboard.writeText(wechatId);
-      const originalText = wechatCopyBtn.innerHTML;
-      wechatCopyBtn.innerHTML = '<div><div class="wechat-label">微信号</div><div class="wechat-id" style="color: #4ADE80;">✓ 已复制</div></div>';
-      setTimeout(() => {
-        wechatCopyBtn.innerHTML = originalText;
-      }, 2000);
-    } catch (err) {
-      alert('复制失败，请手动复制');
-    }
-  });
-}
 
 document.querySelectorAll('.faq-question').forEach(btn => {
   btn.addEventListener('click', () => {
