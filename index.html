@@ -563,6 +563,7 @@ footer { border-top: 1px solid var(--border-subtle); }
   .bank-filter-btn { padding: 10px 20px; font-size: 14px; }
 }
 </style>
+<style>.nav-inner{gap:14px}.wise-popup-actions>button:first-child{font:600 12px/1.4 sans-serif;color:inherit;background:transparent;border:0;min-height:36px;cursor:pointer;white-space:nowrap}@media(max-width:600px){.nav-inner{flex-wrap:wrap;padding-block:10px;gap:8px}.wise-popup-actions{margin-left:auto}}</style>
 </head>
 <body>
 <div class="page-wrapper">
@@ -578,6 +579,7 @@ footer { border-top: 1px solid var(--border-subtle); }
       <a href="#faq">常见问题</a>
       <a href="#contact" class="nav-cta">立即咨询</a>
     </div>
+    <div class="wise-popup-actions"><button type="button" onclick="openCommunityModal()">加入群聊</button><button type="button" data-wise-vote>为 Wise 投票</button></div>
   </div>
 </nav>
 
@@ -1304,7 +1306,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     <img src="粉丝群.png" alt="群聊二维码" style="display:block;width:100%;border-radius:14px;">
     <div style="font-size:12px;color:#aaa;text-align:center;margin-top:12px;">扫码加入群聊，与志同道合的投资者一起交流</div>
     <button onclick="window.open('https://wise.com','_blank')" style="display:block;width:100%;margin-top:16px;padding:14px;background:#07C160;color:#fff;border:none;border-radius:10px;font-size:16px;font-weight:600;cursor:pointer;">进入平台</button>
-    <div onclick="dismissModal()" style="text-align:center;margin-top:10px;font-size:13px;color:#aaa;cursor:pointer;text-decoration:underline;">今日不再提示</div>
+    <div onclick="dismissModal()" style="text-align:center;margin-top:10px;font-size:13px;color:#aaa;cursor:pointer;text-decoration:underline;">关闭</div>
   </div>
 </div>
 <script>
@@ -1314,17 +1316,16 @@ function closeModal() {
 function dismissModal() {
   closeModal();
   var today = new Date().toDateString();
-  localStorage.setItem('modal-dismissed', today);
+
 }
-window.addEventListener('load', function() {
-  var dismissed = localStorage.getItem('modal-dismissed');
-  var today = new Date().toDateString();
-  if (dismissed !== today) {
-    setTimeout(function() {
-      document.getElementById('promo-modal').style.display = 'flex';
-    }, 1000);
-  }
-});
+window.addEventListener('wise-popup:opening', closeModal);
+function openCommunityModal() {
+  window.dispatchEvent(new Event('wise-community:opening'));
+  document.getElementById('promo-modal').style.display = 'flex';
+}
+</script>
+<script>
+(function(){var s=document.createElement('script');s.id='wise-global-popup-script';s.src='/wise-popup.js';s.dataset.site='witness';s.dataset.configUrl=['localhost','127.0.0.1'].includes(location.hostname)?'http://127.0.0.1:3002/api/public/popup':'https://www.wise-invest.org/api/public/popup';document.head.append(s)})();
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
