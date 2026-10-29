@@ -579,7 +579,7 @@ footer { border-top: 1px solid var(--border-subtle); }
       <a href="#faq">常见问题</a>
       <a href="#contact" class="nav-cta">立即咨询</a>
     </div>
-    <div class="wise-popup-actions"><button type="button" onclick="openCommunityModal()">加入群聊</button><button type="button" data-wise-vote>为 Wise 投票</button></div>
+    <div class="wise-popup-actions"><button type="button" onclick="openCommunityModal()">加入群聊</button></div>
   </div>
 </nav>
 
@@ -1315,10 +1315,10 @@ function closeModal() {
 }
 function dismissModal() {
   closeModal();
-  var today = new Date().toDateString();
+
 
 }
-window.addEventListener('wise-popup:opening', closeModal);
+window.addEventListener('DOMContentLoaded', openCommunityModal, { once: true });
 function openCommunityModal() {
   window.dispatchEvent(new Event('wise-community:opening'));
   document.getElementById('promo-modal').style.display = 'flex';
