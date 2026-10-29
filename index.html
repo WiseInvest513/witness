@@ -1297,32 +1297,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 });
 </script>
 
-<!-- 加入群聊弹窗 -->
-<div id="promo-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.65);align-items:center;justify-content:center;">
-  <div style="position:relative;max-width:420px;width:90vw;background:#fff;border-radius:20px;padding:32px 28px 28px;box-shadow:0 20px 60px rgba(0,0,0,0.5);">
-    <button onclick="closeModal()" style="position:absolute;top:14px;right:14px;width:28px;height:28px;border-radius:50%;border:none;background:#f0f0f0;color:#555;font-size:16px;font-weight:bold;cursor:pointer;line-height:28px;text-align:center;">×</button>
-    <div style="font-size:11px;font-weight:600;color:#07C160;letter-spacing:1px;margin-bottom:6px;">WISEINVEST 社区</div>
-    <div style="font-size:20px;font-weight:700;color:#111;margin-bottom:20px;">欢迎加入官方微信群聊</div>
-    <img src="粉丝群.png" alt="群聊二维码" style="display:block;width:100%;border-radius:14px;">
-    <div style="font-size:12px;color:#aaa;text-align:center;margin-top:12px;">扫码加入群聊，与志同道合的投资者一起交流</div>
-    <button onclick="window.open('https://wise.com','_blank')" style="display:block;width:100%;margin-top:16px;padding:14px;background:#07C160;color:#fff;border:none;border-radius:10px;font-size:16px;font-weight:600;cursor:pointer;">进入平台</button>
-    <div onclick="dismissModal()" style="text-align:center;margin-top:10px;font-size:13px;color:#aaa;cursor:pointer;text-decoration:underline;">关闭</div>
-  </div>
-</div>
 <script>
-function closeModal() {
-  document.getElementById('promo-modal').style.display = 'none';
-}
-function dismissModal() {
-  closeModal();
-
-
-}
-window.addEventListener('DOMContentLoaded', openCommunityModal, { once: true });
-function openCommunityModal() {
-  window.dispatchEvent(new Event('wise-community:opening'));
-  document.getElementById('promo-modal').style.display = 'flex';
-}
+function openCommunityModal() { window.dispatchEvent(new Event('wise-community:request')); }
 </script>
 <script>
 (function(){var s=document.createElement('script');s.id='wise-global-popup-script';s.src='/wise-popup.js';s.dataset.site='witness';s.dataset.configUrl=['localhost','127.0.0.1'].includes(location.hostname)?'http://127.0.0.1:3002/api/public/popup':'https://www.wise-invest.org/api/public/popup';document.head.append(s)})();
